@@ -18,4 +18,20 @@ public abstract class Car extends Vehicle implements Serializable {
         this.engine = engine;
         this.powerHp = powerHp;
     }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getEngine() {
+        return engine;
+    }
+
+    public double getPowerHp() {
+        return powerHp;
+    }
 }

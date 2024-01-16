@@ -39,4 +39,16 @@ public abstract class Vehicle extends ObjectPlus implements Serializable {
     public void addReservationDate(LocalDate start, LocalDate end) {
         reservationDates.put(start, end);
     }
+
+    public String getVin() {
+        return vin;
+    }
+
+    public double getMaxPayload() {
+        return maxPayload;
+    }
+
+    public double getPrice() {
+        return price;
+    }
 }
