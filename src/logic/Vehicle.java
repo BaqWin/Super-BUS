@@ -3,9 +3,9 @@ package logic;
 import java.io.Serializable;
 
 public abstract class Vehicle extends ObjectPlus implements Serializable {
-    String vin;
-    double maxPayload;
-    double price;
+    private String vin;
+    private double maxPayload;
+    private double price;
 
     public Vehicle(String vin, double maxPayload, double price){
         super();
@@ -13,5 +13,9 @@ public abstract class Vehicle extends ObjectPlus implements Serializable {
         this.vin = vin;
         this.maxPayload = maxPayload;
         this.price = price;
+    }
+
+    public static void showExtent() throws Exception{
+        ObjectPlus.showExtent(PersonClient.class);
     }
 }

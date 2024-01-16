@@ -5,13 +5,14 @@ import java.time.*;
 import java.util.*;
 
 public class PersonClient extends Client implements Serializable {
-    String firstName;
-    String lastName;
-    LocalDate birthDate;
-    int yearsOld;
-    List<String> licenses = new ArrayList();
-    String pesel;
-    String email;
+    private String firstName;
+    private String lastName;
+    private LocalDate birthDate;
+    private int yearsOld;
+    private List<String> licenses = new ArrayList();
+    private String pesel;
+    private String email;
+
     public PersonClient(String firstName, String lastName, LocalDate birthDate,
                         String license, String pesel, String email,
                         String address, double discount, String phoneNumber) {
@@ -63,9 +64,9 @@ public class PersonClient extends Client implements Serializable {
                 ", licenses=" + licenses +
                 ", pesel='" + pesel + '\'' +
                 ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                ", discount=" + discount +
-                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + getAddress() + '\'' +
+                ", discount=" + getDiscount() +
+                ", phoneNumber='" + getPhoneNumber() + '\'' +
                 '}';
     }
 }
