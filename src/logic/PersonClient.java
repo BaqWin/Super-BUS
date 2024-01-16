@@ -21,7 +21,7 @@ public class PersonClient extends Client implements Serializable {
         this.lastName = lastName;
         setBirthDate(birthDate);
         countYearsOld();
-        licenses.add(license);
+        addLicense(license);
         this.pesel = pesel;
         this.email = email;
     }
@@ -41,7 +41,15 @@ public class PersonClient extends Client implements Serializable {
                 && Period.between(date, currentDate).getYears() >= 18) {
             this.birthDate = date;
         } else {
-            throw new IllegalArgumentException("Data urodzenia musi być wcześniejsza niż obecna data.");
+            throw new IllegalArgumentException("Incorrect date of birth");
+        }
+    }
+
+    public void addLicense(String license){
+        if (license.equals("B") || license.equals("C") || license.equals("CE")) {
+            licenses.add(license);
+        } else {
+            throw new IllegalArgumentException("Permitted licenses: B, C, CE");
         }
     }
 

@@ -23,6 +23,8 @@ public class Main {
         PersonClient p2 = new PersonClient("Adam", "Pracz",
                 LocalDate.of(1994, 05, 02), "C", "12345678902",
                 "pracz@tulczyn.net", "Tulczyn", 0.2, "555-676-878");
+        p2.addLicense("CE");
+
         try {
             PersonClient.showExtent();
 
