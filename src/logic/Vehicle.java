@@ -6,9 +6,11 @@ import java.util.Hashtable;
 import java.util.Map;
 
 public abstract class Vehicle extends ObjectPlus implements Serializable {
+    //TODO Make vin unique!
     private String vin;
     private double maxPayload;
     private double price;
+    private Bodywork bodywork;
 
     private Map<LocalDate, LocalDate> reservationDates = new Hashtable<>();
 
@@ -21,7 +23,7 @@ public abstract class Vehicle extends ObjectPlus implements Serializable {
     }
 
     public static void showExtent() throws Exception{
-        ObjectPlus.showExtent(PersonClient.class);
+        ObjectPlus.showExtent(Vehicle.class);
     }
 
     public boolean isDateAvailable(LocalDate newStartDate, LocalDate newEndDate) {
@@ -51,4 +53,14 @@ public abstract class Vehicle extends ObjectPlus implements Serializable {
     public double getPrice() {
         return price;
     }
+
+    public Bodywork getBodywork() {
+        return bodywork;
+    }
+
+    public void setBodywork(Bodywork bodywork) {
+        this.bodywork = bodywork;
+    }
+
+    public abstract void addBodywork(Bodywork bodywork);
 }
