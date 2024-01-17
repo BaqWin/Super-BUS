@@ -34,4 +34,14 @@ public abstract class Car extends Vehicle implements Serializable {
     public double getPowerHp() {
         return powerHp;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", engine='" + engine + '\'' +
+                ", powerHp=" + powerHp +
+                '}';
+    }
 }

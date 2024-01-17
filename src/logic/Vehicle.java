@@ -22,10 +22,6 @@ public abstract class Vehicle extends ObjectPlus implements Serializable {
         this.price = price;
     }
 
-    public static void showExtent() throws Exception{
-        ObjectPlus.showExtent(Vehicle.class);
-    }
-
     public boolean isDateAvailable(LocalDate newStartDate, LocalDate newEndDate) {
         for (var entry : reservationDates.entrySet()) {
             LocalDate startDate = entry.getKey();
