@@ -54,6 +54,34 @@ public class PersonClient extends Client implements Serializable {
         }
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public int getYearsOld() {
+        return yearsOld;
+    }
+
+    public List<String> getLicenses() {
+        return licenses;
+    }
+
+    public String getPesel() {
+        return pesel;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     @Override
     public String toString() {
         return "PersonClient{" +

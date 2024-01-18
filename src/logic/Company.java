@@ -1,15 +1,34 @@
 package logic;
 
-public class Company {
-    private String name;
-    private String nip; //TODO Make it qnique
+import java.io.Serializable;
 
-    public Company(String name, String nip) {
+public class Company extends Client implements Serializable {
+    private String name;
+    private String nip; //TODO Make it unique
+
+    public Company(String name, String nip, String address, double discount, String phoneNumber) {
+        super(address, discount, phoneNumber);
+
         this.name = name;
         this.nip = nip;
     }
 
+    public static void showExtent() throws Exception{
+        ObjectPlus.showExtent(Company.class);
+    }
+
     public void showAllRentedVehicles(){
         //TODO
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "name='" + name + '\'' +
+                ", nip='" + nip + '\'' +
+                ", address='" + getAddress() + '\'' +
+                ", discount=" + getDiscount() +
+                ", phoneNumber='" + getPhoneNumber() + '\'' +
+                '}';
     }
 }
