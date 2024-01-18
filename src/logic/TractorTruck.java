@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 public class TractorTruck extends Car implements Serializable {
-    private static String permission = "CE";
+    private String permission = "CE";
     private boolean tachograph;
     public TractorTruck(String brand, String model, String engine, double powerHp, String vin,
                         double maxPayload, double price, boolean tacho) {
@@ -17,7 +17,7 @@ public class TractorTruck extends Car implements Serializable {
         ObjectPlus.showExtent(TractorTruck.class);
     }
 
-    public static String getPermission() {
+    public String getPermission() {
         return permission;
     }
 

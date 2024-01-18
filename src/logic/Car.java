@@ -35,6 +35,8 @@ public abstract class Car extends Vehicle implements Serializable {
         return powerHp;
     }
 
+    public abstract String getPermission();
+
     @Override
     public String toString() {
         return "Car{" +

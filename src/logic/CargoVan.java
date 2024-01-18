@@ -3,7 +3,7 @@ package logic;
 import java.io.Serializable;
 
 public class CargoVan extends Car implements Serializable {
-    private static String permission = "B";
+    private String permission = "B";
     public CargoVan(String brand, String model, String engine, double powerHp, String vin, double maxPayload, double price) {
         super(brand, model, engine, powerHp, vin, maxPayload, price);
     }
@@ -12,7 +12,7 @@ public class CargoVan extends Car implements Serializable {
         ObjectPlus.showExtent(CargoVan.class);
     }
 
-    public static String getPermission() {
+    public String getPermission() {
         return permission;
     }
 

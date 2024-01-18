@@ -27,7 +27,7 @@ public class Reservation extends ObjectPlus implements Serializable {
 
         Reservation reservation = new Reservation(client);
         client.addReservation(reservation);
-
+        reservation.setBookingDate(LocalDate.now());
         return reservation;
     }
 
@@ -96,10 +96,20 @@ public class Reservation extends ObjectPlus implements Serializable {
     }
 
     public boolean checkForLicense(){
-        return false;//TODO
+        String tmp;
+        for (Vehicle vehicle : vehicles) {
+            if(vehicle instanceof Car){
+                tmp = ((Car) vehicle).getPermission();//TODO
+            }
+        }
+        return false;
     }
 
     public int getRentDays() {
         return rentDays;
+    }
+
+    public void setBookingDate(LocalDate bookingDate) {
+        this.bookingDate = bookingDate;
     }
 }

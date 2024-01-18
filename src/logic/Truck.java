@@ -3,7 +3,7 @@ package logic;
 import java.io.Serializable;
 
 public class Truck extends Car implements Serializable {
-    private static String permission = "C";
+    private String permission = "C";
     private boolean tachograph;
 
     public Truck(String brand, String model, String engine, double powerHp, String vin,
@@ -17,7 +17,7 @@ public class Truck extends Car implements Serializable {
         ObjectPlus.showExtent(Truck.class);
     }
 
-    public static String getPermission() {
+    public String getPermission() {
         return permission;
     }
 
