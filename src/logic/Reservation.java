@@ -16,32 +16,45 @@ public class Reservation extends ObjectPlus implements Serializable {
     private List<Vehicle> vehicles = new ArrayList<>();
     private RentalType rentalType;
 
-    private Reservation(Client client, LocalDate bookingDate, LocalDate beginDate,
-                        LocalDate endDate){
-        this.bookingDate = bookingDate;
-        this.beginDate = beginDate;
-        this.endDate = endDate;
+    private Reservation(Client client){
         this.client = client;
     }
 
-    public static Reservation createReservation(Client client, LocalDate bookingDate,
-                                                LocalDate beginDate, LocalDate endDate){
+    public static Reservation createReservation(Client client){
         if(client == null){
             throw new NullPointerException();
         }
 
-        Reservation reservation = new Reservation(client, bookingDate, beginDate, endDate);
+        Reservation reservation = new Reservation(client);
         client.addReservation(reservation);
 
         return reservation;
     }
 
-    public String reservationDetails(){
-        return "";//TODO
+    public void addRentalDates(LocalDate startDate, LocalDate endDate) throws Exception{
+        if(!vehicles.isEmpty()){
+            for (Vehicle vehicle : vehicles) {
+                if(!vehicle.isDateAvailable(startDate, endDate)){
+                    throw new Exception("Rent date is not available");
+                }
+            }
+            for (Vehicle vehicle : vehicles) {
+                vehicle.addReservationDate(startDate, endDate);
+            }
+            this.beginDate = startDate;
+            this.endDate = endDate;
+        }else{
+            throw new Exception("There is no vehicle in reservation!");
+        }
     }
 
-    public void extendReservation(int days){
-        //TODO
+    public String reservationDetails(){
+        String ret = "Reservation Details: {";
+        for (Vehicle vehicle : vehicles) {
+            ret += vehicle;
+        }
+        ret += "}";
+        return ret;//TODO
     }
 
     public void cancelReservation(){
@@ -49,10 +62,6 @@ public class Reservation extends ObjectPlus implements Serializable {
     }
 
     public void countFinalPrice(){
-        //TODO
-    }
-
-    public void addRentalType(){
         //TODO
     }
 
