@@ -2,8 +2,7 @@ package logic;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.*;
 
 public abstract class Vehicle extends ObjectPlus implements Serializable {
     //TODO Make vin unique!
@@ -13,6 +12,7 @@ public abstract class Vehicle extends ObjectPlus implements Serializable {
     private Bodywork bodywork;
 
     private Map<LocalDate, LocalDate> reservationDates = new Hashtable<>();
+    private List<Reservation> reservations = new ArrayList<>();
 
     public Vehicle(String vin, double maxPayload, double price){
         super();
@@ -59,4 +59,14 @@ public abstract class Vehicle extends ObjectPlus implements Serializable {
     }
 
     public abstract void addBodywork(Bodywork bodywork);
+
+    public void addReservation(Reservation reservation){
+        if(reservation == null){
+            throw new NullPointerException();
+        }
+        if(!reservations.contains(reservation)){
+            reservations.add(reservation);
+            reservation.addVehicle(this);
+        }
+    }
 }
