@@ -14,8 +14,9 @@ public class Reservation extends ObjectPlus implements Serializable {
 
     private Client client;
     private List<Vehicle> vehicles = new ArrayList<>();
+    private RentalType rentalType;
 
-    private Reservation(Client client, Vehicle vehicle, LocalDate bookingDate, LocalDate beginDate,
+    private Reservation(Client client, LocalDate bookingDate, LocalDate beginDate,
                         LocalDate endDate){
         this.bookingDate = bookingDate;
         this.beginDate = beginDate;
@@ -23,36 +24,36 @@ public class Reservation extends ObjectPlus implements Serializable {
         this.client = client;
     }
 
-    public static Reservation createReservation(Client client, Vehicle vehicle, LocalDate bookingDate,
+    public static Reservation createReservation(Client client, LocalDate bookingDate,
                                                 LocalDate beginDate, LocalDate endDate){
         if(client == null){
             throw new NullPointerException();
         }
 
-        Reservation reservation = new Reservation(client, vehicle, bookingDate, beginDate, endDate);
+        Reservation reservation = new Reservation(client, bookingDate, beginDate, endDate);
         client.addReservation(reservation);
 
         return reservation;
     }
 
     public String reservationDetails(){
-        return "";
+        return "";//TODO
     }
 
     public void extendReservation(int days){
-
+        //TODO
     }
 
     public void cancelReservation(){
-
+        //TODO
     }
 
     public void countFinalPrice(){
-
+        //TODO
     }
 
     public void addRentalType(){
-
+        //TODO
     }
 
     public String getStatus() {
@@ -76,7 +77,20 @@ public class Reservation extends ObjectPlus implements Serializable {
         }
     }
 
+    public void addRentalType(RentalType rentalType){
+        if(rentalType == null){
+            throw new NullPointerException();
+        }
+        if(this.rentalType == null){
+            this.rentalType = rentalType;
+        }
+    }
+
     public boolean checkForLicense(){
-        return false;
+        return false;//TODO
+    }
+
+    public int getRentDays() {
+        return rentDays;
     }
 }
