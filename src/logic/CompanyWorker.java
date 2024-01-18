@@ -23,7 +23,6 @@ public class CompanyWorker extends PersonClient implements Serializable, ICompan
         super(firstName, lastName, birthDate, license, pesel, email, address, discount, phoneNumber);
 
         this.position = position;
-
         this.company = company;
     }
 

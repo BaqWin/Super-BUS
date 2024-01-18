@@ -7,6 +7,7 @@ public abstract class Client extends ObjectPlus implements Serializable {
     private String address;
     private double discount;
     private String phoneNumber;
+    private List<Reservation> reservations = new ArrayList<>();
 
     public Client(String address, double discount, String phoneNumber){
         super();
@@ -26,5 +27,14 @@ public abstract class Client extends ObjectPlus implements Serializable {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public void addReservation(Reservation reservation){
+        if(reservation == null){
+            throw new NullPointerException("Reservation is null");
+        }
+        if(!reservations.contains(reservation)){
+            reservations.add(reservation);
+        }
     }
 }
