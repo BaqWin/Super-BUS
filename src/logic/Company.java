@@ -21,6 +21,14 @@ public class Company extends Client implements Serializable {
         //TODO
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getNip() {
+        return nip;
+    }
+
     @Override
     public String toString() {
         return "Company{" +

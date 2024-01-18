@@ -39,13 +39,14 @@ public class CompanyWorker extends PersonClient implements Serializable, ICompan
     @Override
     public String toString() {
         return "CompanyWorker{" +
-                "company=" + company + '\'' +
+                "company={name='" + company.getName() + '\'' +
+                ", NIP='" + company.getNip() + '\'' + "}" +
                 ", position='" + position + '\'' +
                 ", firstName='" + getFirstName() + '\'' +
                 ", lastName='" + getLastName() + '\'' +
-                ", birthDate=" + getBirthDate() +
-                ", yearsOld=" + getYearsOld() +
-                ", licenses=" + getLicenses() +
+                ", birthDate='" + getBirthDate() + '\'' +
+                ", yearsOld='" + getYearsOld() + '\'' +
+                ", licenses='" + getLicenses() + '\'' +
                 ", pesel='" + getPesel() + '\'' +
                 ", email='" + getEmail() + '\'' +
                 ",personal address='" + getAddress() + '\'' +
