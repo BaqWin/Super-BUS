@@ -42,4 +42,12 @@ public class RentalType extends ObjectPlus implements Serializable {
     public double getAdditionalDiscount() {
         return additionalDiscount;
     }
+
+    @Override
+    public String toString() {
+        return "RentalType{" +
+                "type='" + type + '\'' +
+                ", additionalDiscount=" + additionalDiscount +
+                '}';
+    }
 }

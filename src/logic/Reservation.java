@@ -54,12 +54,17 @@ public class Reservation extends ObjectPlus implements Serializable {
     }
 
     public String reservationDetails(){
-        String ret = "Reservation Details: {";
+        String ret = "Reservation Details:\nVehicles:\n";
         for (Vehicle vehicle : vehicles) {
-            ret += vehicle;
+            ret += vehicle + "\n";
         }
-        ret += "}";
-        return ret;//TODO
+        ret += "Client: " + client + "\n" +
+                "Reservation Begin Date: " + beginDate + ", End Date: " + endDate + "\n" +
+                "Status: " + getStatus() + "\n" +
+                "Rent days: " + rentDays + "\n" +
+                "Price: " + finalPrice + "\n" +
+                "Rental type: " + rentalType + "\n";
+        return ret;
     }
 
     public void cancelReservation() throws Exception{
@@ -77,7 +82,7 @@ public class Reservation extends ObjectPlus implements Serializable {
         for (Vehicle vehicle : vehicles) {
             price += (vehicle.getPrice() * rentDays);
         }
-        price *= (1 - client.getDiscount()) * (1 - rentalType.getAdditionalDiscount());
+        finalPrice = price * (1 - client.getDiscount()) * (1 - rentalType.getAdditionalDiscount());
     }
 
     public String getStatus() {
