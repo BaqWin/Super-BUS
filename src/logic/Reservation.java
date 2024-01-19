@@ -62,13 +62,13 @@ public class Reservation extends ObjectPlus implements Serializable {
         return ret;//TODO
     }
 
-    public void cancelReservation(){
+    public void cancelReservation() throws Exception{
         Period period = Period.between(LocalDate.now(), beginDate);
         if(period.getDays() > 7) {
             setStatus("Anulowana");
-            System.out.println("Rezerwacja anulowana");
+            //TODO Zwolnienie terminu dla pojazdow
         }else{
-            System.out.println("Do czasu rozpoczecia rezerwacji zostalo mniej niz 7 dni");
+            throw new Exception("Time till rent starts is less than 7 days");
         }
     }
 
