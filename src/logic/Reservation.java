@@ -96,13 +96,37 @@ public class Reservation extends ObjectPlus implements Serializable {
     }
 
     public boolean checkForLicense(){
+        if(client instanceof Company){
+            return true;
+        }
+        String clientLicense = "";
+        String requiredForCar = "";
         String tmp;
+        Boolean atLeastOneCar = false;
+        if(client instanceof  PersonClient){
+            clientLicense = ((PersonClient) client).getMainLicense();
+        }
         for (Vehicle vehicle : vehicles) {
             if(vehicle instanceof Car){
-                tmp = ((Car) vehicle).getPermission();//TODO
+                atLeastOneCar = true;
+                tmp = ((Car) vehicle).getPermission();
+                if(tmp.equals("B") && !requiredForCar.equals("C") && !requiredForCar.equals("CE")){
+                    requiredForCar = tmp;
+                }else if(tmp.equals("C") && !requiredForCar.equals("CE")){
+                    requiredForCar = tmp;
+                }else if(tmp.equals("CE")){
+                    requiredForCar = tmp;
+                }
             }
         }
-        return false;
+        if(atLeastOneCar){
+            if(clientLicense.equals(requiredForCar)){
+                return true;
+            }else{
+               return false;
+            }
+        }
+        return true;
     }
 
     public int getRentDays() {

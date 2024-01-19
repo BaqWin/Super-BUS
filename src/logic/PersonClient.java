@@ -48,7 +48,9 @@ public class PersonClient extends Client implements Serializable {
 
     public void addLicense(String license){
         if (license.equals("B") || license.equals("C") || license.equals("CE")) {
-            licenses.add(license);
+            if(!licenses.contains(license)) {
+                licenses.add(license);
+            }
         } else {
             throw new IllegalArgumentException("Permitted licenses: B, C, CE");
         }
@@ -72,6 +74,17 @@ public class PersonClient extends Client implements Serializable {
 
     public List<String> getLicenses() {
         return licenses;
+    }
+
+    public String getMainLicense(){
+        if(licenses.contains("CE")){
+            return "CE";
+        }else if(licenses.contains("C")){
+            return "C";
+        }else if(licenses.contains("B")){
+            return "B";
+        }
+        return null;
     }
 
     public String getPesel() {
