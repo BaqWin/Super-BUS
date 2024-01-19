@@ -73,7 +73,11 @@ public class Reservation extends ObjectPlus implements Serializable {
     }
 
     public void countFinalPrice(){
-        //TODO
+        double price = 0;
+        for (Vehicle vehicle : vehicles) {
+            price += (vehicle.getPrice() * rentDays);
+        }
+        price *= (1 - client.getDiscount()) * (1 - rentalType.getAdditionalDiscount());
     }
 
     public String getStatus() {
@@ -113,7 +117,7 @@ public class Reservation extends ObjectPlus implements Serializable {
         String clientLicense = "";
         String requiredForCar = "";
         String tmp;
-        Boolean atLeastOneCar = false;
+        boolean atLeastOneCar = false;
         if(client instanceof  PersonClient){
             clientLicense = ((PersonClient) client).getMainLicense();
         }
@@ -131,11 +135,7 @@ public class Reservation extends ObjectPlus implements Serializable {
             }
         }
         if(atLeastOneCar){
-            if(clientLicense.equals(requiredForCar)){
-                return true;
-            }else{
-               return false;
-            }
+            return clientLicense.equals(requiredForCar);
         }
         return true;
     }
