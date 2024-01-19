@@ -1,14 +1,12 @@
 package gui;
 
-import logic.Client;
-import logic.CompanyWorker;
-import logic.ObjectPlus;
-import logic.PersonClient;
+import logic.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClientListFrame extends JFrame {
@@ -39,9 +37,15 @@ public class ClientListFrame extends JFrame {
 
     private void loadCustomers() {
         try {
-            List<ObjectPlus> customers = PersonClient.getListOfExtents(CompanyWorker.class);
-            for (ObjectPlus customer : customers) {
-                listModel.addElement((Client) customer);
+            List<List<ObjectPlus>> customers = new ArrayList<>();
+            customers.add(PersonClient.getListOfExtents(PersonClient.class));
+            customers.add(CompanyWorker.getListOfExtents(CompanyWorker.class));
+            customers.add(Company.getListOfExtents(Company.class));
+            //Błąd - duplikacja klienta jezeli dziedziczy on po PersonClient - nie wiem jak naprawic
+            for (List<ObjectPlus> customerList : customers) {
+                for (ObjectPlus customer : customerList) {
+                    listModel.addElement((Client) customer);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
