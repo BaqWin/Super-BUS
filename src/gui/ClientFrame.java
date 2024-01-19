@@ -11,7 +11,7 @@ public class ClientFrame extends JFrame {
     private JList<String> customerList;
     private DefaultListModel<String> listModel;
     private MainFrame mainFrame;
-    public ClientFrame(MainFrame mainFrame) { // Zmodyfikowany konstruktor
+    public ClientFrame(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         setTitle("Wybierz Klienta");
         setSize(400, 300);
@@ -33,13 +33,6 @@ public class ClientFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 addCustomer();
-            }
-        });
-
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
             }
         });
 

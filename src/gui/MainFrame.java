@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 public class MainFrame extends JFrame {
     private JButton showCustomersButton, createReservationButton;
@@ -36,7 +34,8 @@ public class MainFrame extends JFrame {
     }
 
     private void showAllCustomers() {
-        JOptionPane.showMessageDialog(this, "Pokazuje wszystkich klientów");
+        ClientListFrame customerListFrame = new ClientListFrame();
+        customerListFrame.setVisible(true);
     }
 
     private void createNewReservation() {

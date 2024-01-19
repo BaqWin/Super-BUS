@@ -31,6 +31,16 @@ public class ObjectPlus implements Serializable {
         }
     }
 
+    public static List<ObjectPlus> getListOfExtents(Class theClass) throws Exception{
+        List<ObjectPlus> extent = null;
+        if(allExtents.containsKey(theClass)){
+            extent = allExtents.get(theClass);
+        }else{
+            throw new Exception("Unknown class: " + theClass);
+        }
+        return extent;
+    }
+
     public static void writeExtents(ObjectOutputStream stream) throws IOException{
         stream.writeObject(allExtents);
     }
