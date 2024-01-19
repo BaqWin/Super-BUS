@@ -5,11 +5,12 @@ import java.time.LocalDate;
 import java.util.*;
 
 public abstract class Vehicle extends ObjectPlus implements Serializable {
-    //TODO Make vin unique!
     private String vin;
     private double maxPayload;
     private double price;
     private Bodywork bodywork;
+
+    private static Set<String> vinNumbers = new HashSet<>();
 
     private Map<LocalDate, LocalDate> reservationDates = new Hashtable<>();
     private List<Reservation> reservations = new ArrayList<>();
@@ -68,5 +69,23 @@ public abstract class Vehicle extends ObjectPlus implements Serializable {
             reservations.add(reservation);
             reservation.addVehicle(this);
         }
+    }
+
+    public void setVin(String vin) throws Exception {
+        if(!checkVinUnique(vin)){
+            vinNumbers.add(vin);
+            this.vin = vin;
+        }else{
+            throw new Exception("This VIN number already exists");
+        }
+    }
+
+    private static boolean checkVinUnique(String vin){
+        for (String vinNumber : vinNumbers) {
+            if(vinNumber.equals(vin)){
+                return true;
+            }
+        }
+        return false;
     }
 }
