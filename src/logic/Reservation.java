@@ -1,7 +1,7 @@
 package logic;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.*;
 import java.util.*;
 
 public class Reservation extends ObjectPlus implements Serializable {
@@ -43,6 +43,11 @@ public class Reservation extends ObjectPlus implements Serializable {
             }
             this.beginDate = startDate;
             this.endDate = endDate;
+            rentDays = Period.between(startDate, endDate).getDays();
+            setStatus("Planowana");
+            addRentalType(new RentalType(this));
+            rentalType.calculateAdditionalDiscount();
+            countFinalPrice();
         }else{
             throw new Exception("There is no vehicle in reservation!");
         }
@@ -58,7 +63,13 @@ public class Reservation extends ObjectPlus implements Serializable {
     }
 
     public void cancelReservation(){
-        //TODO
+        Period period = Period.between(LocalDate.now(), beginDate);
+        if(period.getDays() > 7) {
+            setStatus("Anulowana");
+            System.out.println("Rezerwacja anulowana");
+        }else{
+            System.out.println("Do czasu rozpoczecia rezerwacji zostalo mniej niz 7 dni");
+        }
     }
 
     public void countFinalPrice(){
