@@ -31,6 +31,10 @@ public class Reservation extends ObjectPlus implements Serializable {
         return reservation;
     }
 
+    public static void showExtent() throws Exception{
+        ObjectPlus.showExtent(Reservation.class);
+    }
+
     public void addRentalDates(LocalDate startDate, LocalDate endDate) throws Exception{
         if(!vehicles.isEmpty()){
             for (Vehicle vehicle : vehicles) {
@@ -151,5 +155,20 @@ public class Reservation extends ObjectPlus implements Serializable {
 
     public void setBookingDate(LocalDate bookingDate) {
         this.bookingDate = bookingDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "bookingDate=" + bookingDate +
+                ", beginDate=" + beginDate +
+                ", endDate=" + endDate +
+                ", status='" + status + '\'' +
+                ", rentDays=" + rentDays +
+                ", finalPrice=" + finalPrice +
+                ", client=" + client +
+                ", vehicles=" + vehicles +
+                ", rentalType=" + rentalType +
+                '}';
     }
 }

@@ -37,4 +37,8 @@ public abstract class Client extends ObjectPlus implements Serializable {
             reservations.add(reservation);
         }
     }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
 }
