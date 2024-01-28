@@ -29,6 +29,14 @@ public class Bodywork extends ObjectPlus implements Serializable {
         }
     }
 
+    public String getBodyType() {
+        return bodyType;
+    }
+
+    public String getInternalDimensions() {
+        return internalDimensions;
+    }
+
     @Override
     public String toString() {
         return "Bodywork{" +

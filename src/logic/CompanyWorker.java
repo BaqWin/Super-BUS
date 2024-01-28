@@ -30,6 +30,14 @@ public class CompanyWorker extends PersonClient implements Serializable, ICompan
         ObjectPlus.showExtent(CompanyWorker.class);
     }
 
+    public String getPosition() {
+        return position;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
     @Override
     public void showAllRentedVehicles() {
         //TODO
