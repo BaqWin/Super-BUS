@@ -157,6 +157,10 @@ public class Reservation extends ObjectPlus implements Serializable {
         this.bookingDate = bookingDate;
     }
 
+    public List<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
     @Override
     public String toString() {
         return "Reservation{" +

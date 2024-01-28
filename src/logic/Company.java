@@ -1,6 +1,8 @@
 package logic;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Company extends Client implements Serializable {
     private String name;
@@ -17,8 +19,14 @@ public class Company extends Client implements Serializable {
         ObjectPlus.showExtent(Company.class);
     }
 
-    public void showAllRentedVehicles(){
-        //TODO
+    public List<String> showAllRentedVehicles(){
+        List<String> list = new ArrayList<>();
+        for(var reservation : this.getReservations()){
+            for(var vehicle : reservation.getVehicles()){
+                list.add(vehicle.toString());
+            }
+        }
+        return list;
     }
 
     public String getName() {

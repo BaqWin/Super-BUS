@@ -2,6 +2,8 @@ package logic;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CompanyWorker extends PersonClient implements Serializable, ICompany {
     private String position;
@@ -39,8 +41,14 @@ public class CompanyWorker extends PersonClient implements Serializable, ICompan
     }
 
     @Override
-    public void showAllRentedVehicles() {
-        //TODO
+    public List<String> showAllRentedVehicles(){
+        List<String> list = new ArrayList<>();
+        for(var reservation : this.getReservations()){
+            for(var vehicle : reservation.getVehicles()){
+                list.add(vehicle.toString());
+            }
+        }
+        return list;
     }
 
     @Override
