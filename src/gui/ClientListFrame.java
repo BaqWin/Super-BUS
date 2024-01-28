@@ -41,7 +41,7 @@ public class ClientListFrame extends JFrame {
             customers.add(PersonClient.getListOfExtents(PersonClient.class));
             customers.add(CompanyWorker.getListOfExtents(CompanyWorker.class));
             customers.add(Company.getListOfExtents(Company.class));
-            //Błąd - duplikacja klienta jezeli dziedziczy on po PersonClient - nie wiem jak naprawic
+            //TODO Błąd - duplikacja klienta jezeli dziedziczy on po PersonClient
             for (List<ObjectPlus> customerList : customers) {
                 for (ObjectPlus customer : customerList) {
                     listModel.addElement((Client) customer);

@@ -22,7 +22,6 @@ public class ClientInfoFrame extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Panel na górze z imieniem i nazwiskiem klienta
         JPanel namePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         nameLabel = new JLabel("Imię i nazwisko: ");
         if (client instanceof PersonClient) {

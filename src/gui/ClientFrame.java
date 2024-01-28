@@ -1,15 +1,18 @@
 package gui;
 
+import logic.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
+import java.util.List;
 
 public class ClientFrame extends JFrame {
     private JButton addButton, backButton;
-    private JList<String> customerList;
-    private DefaultListModel<String> listModel;
+    private JList<Client> customerList;
+    private DefaultListModel<Client> listModel;
     private MainFrame mainFrame;
     public ClientFrame(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
@@ -29,10 +32,17 @@ public class ClientFrame extends JFrame {
         buttonPanel.add(backButton);
         add(buttonPanel, BorderLayout.SOUTH);
 
+        loadCustomers();
+
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addCustomer();
+                Object selectedCustomer = customerList.getSelectedValue();
+                if (selectedCustomer != null) {
+                    addCustomer((Client) selectedCustomer);
+                } else {
+                    JOptionPane.showMessageDialog(ClientFrame.this, "Proszę wybrać klienta z listy.");
+                }
             }
         });
 
@@ -45,7 +55,29 @@ public class ClientFrame extends JFrame {
         });
     }
 
-    private void addCustomer() {
+    private void loadCustomers() {
+        try {
+            List<List<ObjectPlus>> customers = new ArrayList<>();
+            customers.add(PersonClient.getListOfExtents(PersonClient.class));
+            customers.add(CompanyWorker.getListOfExtents(CompanyWorker.class));
+            customers.add(Company.getListOfExtents(Company.class));
+            //TODO Błąd - duplikacja klienta jezeli dziedziczy on po PersonClient
+            for (List<ObjectPlus> customerList : customers) {
+                for (ObjectPlus customer : customerList) {
+                    listModel.addElement((Client) customer);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Błąd podczas ładowania klientów: " + e.getMessage(), "Błąd", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
+    private void addCustomer(Client client) {
+        Reservation reservation = Reservation.createReservation(client);
+        CarFrame carFrame = new CarFrame(this, reservation);
+
+        this.setVisible(false);
+        carFrame.setVisible(true);
     }
 }
