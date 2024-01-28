@@ -7,8 +7,14 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
         String extentFile = "extent.bin";
+//        try {
+//            loadExampleData();
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
         loadData(extentFile);
         new MainFrame().setVisible(true);
+        saveData(extentFile);
     }
 
     public static void loadExampleData() throws Exception {
@@ -50,6 +56,16 @@ public class Main {
         r2.addVehicle(c3);
         r2.addRentalDates(LocalDate.of(2024, 01, 30),
                 LocalDate.of(2024, 02, 04));
+
+        Reservation r3 = Reservation.createReservation(p2);
+        r3.addVehicle(c2);
+        r3.addRentalDates(LocalDate.of(2024, 01, 30),
+                LocalDate.of(2024, 02, 04));
+
+        Reservation r4 = Reservation.createReservation(cl1);
+        r4.addVehicle(c2);
+        r4.addRentalDates(LocalDate.of(2025, 01, 30),
+                LocalDate.of(2025, 02, 04));
     }
 
     public static void loadData(String extentFile){
