@@ -22,6 +22,7 @@ public class CarFrame extends JFrame {
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+        setLocationRelativeTo(null);
 
         listModel = new DefaultListModel<>();
         vehicleList = new JList<>(listModel);

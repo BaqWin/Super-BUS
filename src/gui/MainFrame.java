@@ -13,6 +13,7 @@ public class MainFrame extends JFrame {
         setSize(500, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
+        setLocationRelativeTo(null);
 
         showCustomersButton = new JButton("Pokaż wszystkich klientów");
         add(showCustomersButton);

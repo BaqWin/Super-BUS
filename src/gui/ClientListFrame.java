@@ -18,6 +18,7 @@ public class ClientListFrame extends JFrame {
         setSize(2000, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
+        setLocationRelativeTo(null);
 
         listModel = new DefaultListModel<>();
         customerList = new JList<>(listModel);
