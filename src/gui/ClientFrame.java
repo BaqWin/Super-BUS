@@ -74,8 +74,7 @@ public class ClientFrame extends JFrame {
     }
 
     private void addCustomer(Client client) {
-        Reservation reservation = Reservation.createReservation(client);
-        CarFrame carFrame = new CarFrame(this, reservation);
+        CarFrame carFrame = new CarFrame(this, client);
 
         this.setVisible(false);
         carFrame.setVisible(true);

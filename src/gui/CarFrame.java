@@ -11,22 +11,21 @@ import java.util.List;
 
 public class CarFrame extends JFrame {
     private JButton addButton, backButton;
-    private JList<Client> customerList;
-    private DefaultListModel<Client> listModel;
+    private JList<Vehicle> vehicleList;
+    private DefaultListModel<Vehicle> listModel;
     private ClientFrame clientFrame;
-
-    private Reservation reservation;
-    public CarFrame(ClientFrame clientFrame, Reservation reservation) {
+    private Client client;
+    public CarFrame(ClientFrame clientFrame, Client client) {
         this.clientFrame = clientFrame;
-        this.reservation = reservation;
+        this.client = client;
         setTitle("Wybierz Pojazd");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
         listModel = new DefaultListModel<>();
-        customerList = new JList<>(listModel);
-        add(new JScrollPane(customerList), BorderLayout.CENTER);
+        vehicleList = new JList<>(listModel);
+        add(new JScrollPane(vehicleList), BorderLayout.CENTER);
 
         JPanel buttonPanel = new JPanel();
         addButton = new JButton("Dodaj pojazd");
@@ -40,12 +39,12 @@ public class CarFrame extends JFrame {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object selectedCustomer = customerList.getSelectedValue();
-//                if (selectedCustomer != null) {
-//                    addCustomer((Client) selectedCustomer);
-//                } else {
-//                    JOptionPane.showMessageDialog(ClientFrame.this, "Proszę wybrać klienta z listy.");
-//                }
+                Object selectedVehicle = vehicleList.getSelectedValue();
+                if (selectedVehicle != null) {
+                    addVehicle((Vehicle) selectedVehicle);
+                } else {
+                    JOptionPane.showMessageDialog(CarFrame.this, "Proszę wybrać pojazd z listy.");
+                }
             }
         });
 
@@ -65,13 +64,21 @@ public class CarFrame extends JFrame {
             vehicles.add(Truck.getListOfExtents(Truck.class));
             vehicles.add(TractorTruck.getListOfExtents(TractorTruck.class));
             vehicles.add(Trailer.getListOfExtents(Trailer.class));
+            for (List<ObjectPlus> vehicleList : vehicles) {
+                for (ObjectPlus vehicle : vehicleList) {
+                    listModel.addElement((Vehicle) vehicle);
+                }
+            }
         }catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Błąd podczas ładowania pojazdów: " + e.getMessage(), "Błąd", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void addCustomer(Client client) {
+    private void addVehicle(Vehicle vehicle) {
+        DateFrame dateFrame = new DateFrame(this, client, vehicle);
 
+        this.setVisible(false);
+        dateFrame.setVisible(true);
     }
 }
