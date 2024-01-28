@@ -39,7 +39,7 @@ public class MainFrame extends JFrame {
     }
 
     private void createNewReservation() {
-        this.setVisible(false);
+        //this.setVisible(false);
 
         ClientFrame clientFrame = new ClientFrame(this);
         clientFrame.setVisible(true);

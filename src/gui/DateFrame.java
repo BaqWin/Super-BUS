@@ -113,6 +113,9 @@ public class DateFrame extends JFrame {
     }
 
     private void nextFrame(LocalDate date, LocalDate endDate){
-        
+        SummaryFrame summaryFrame = new SummaryFrame(this, client, vehicle, date, endDate);
+
+        this.setVisible(false);
+        summaryFrame.setVisible(true);
     }
 }
